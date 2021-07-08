@@ -6,8 +6,6 @@ import random
 # API.Bible credentials: ####
 # API.Bible King James (Authorized) Version (protestant) ID: de4e12af7f28f599-02
 
-# https://api.ap.org/media/v/content/search?q=versioncreated:2018-01-19&apikey={apikey}
-
 
 def choose_rand_chap():
     """ Pick a random chapter from Revelation """
