@@ -106,7 +106,7 @@ def words_list_creation(verse_str):
 
 
 def choose_topic(words):
-    """ Search for news articles related to the verse """
+    """ Pick a word to be the topic of the news article """
     random.shuffle(words)
     return words.pop()
 
