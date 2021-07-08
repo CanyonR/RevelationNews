@@ -3,7 +3,7 @@ import json
 import requests
 import random
 
-# API.Bible credentials: f208fb25f01350215cb19b257fb1caf5
+# API.Bible credentials: ####
 # API.Bible King James (Authorized) Version (protestant) ID: de4e12af7f28f599-02
 
 # https://api.ap.org/media/v/content/search?q=versioncreated:2018-01-19&apikey={apikey}
@@ -21,7 +21,7 @@ def call_api_bible_chap(chap_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
+        'api-key': '####'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
@@ -55,7 +55,7 @@ def call_api_bible_verse(chap_num, verse_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
+        'api-key': '####'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
