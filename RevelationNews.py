@@ -66,6 +66,16 @@ def call_api_bible_verse(chap_num, verse_num):
     return verse_str
 
 
+def clean_verse_up(verse_str):
+    while verse_str[0] == " ":
+        verse_str = verse_str[1:]
+
+    while verse_str[-1] == " ":
+        verse_str = verse_str[:-1]
+
+    return verse_str
+
+
 def words_list_creation(verse_str):
     """" Create a list of important words from the verse """
 
@@ -121,31 +131,28 @@ def call_news_site(topic):
              '&pageSize=1' \
              '&apiKey=#####'
 
-
     news_api_response = requests.get(f"https://newsapi.org/v2/everything?{params}")
 
     news_api_response_json = news_api_response.json()['articles'][0]
     # print(news_api_response_json)
-    news_source = news_api_response_json['source']
+    # news_source = news_api_response_json['source']
     news_title = news_api_response_json['title']
     news_url = news_api_response_json['url']
     news_description = news_api_response_json['description']
 
     print(news_title)
-    print(news_source['name'])
+    # print(news_source['name'])
     print(news_description)
     print(news_url)
 
 
-
 # if __name__ == "__main__":
 chap_num = choose_rand_chap()
-print(f'REVELATION\nChapter {chap_num}')
 chap_length = call_api_bible_chap(chap_num)
 verse_num = choose_rand_verse(chap_length)
-print(f'Verse {verse_num}')
+print(f'REVELATION\nChapter {chap_num}\nVerse {verse_num}')
 verse_str = call_api_bible_verse(chap_num, verse_num)
-print(verse_str)
+print(clean_verse_up(verse_str))
 words = words_list_creation(verse_str)
 # print(words)
 topic = choose_topic(words)
