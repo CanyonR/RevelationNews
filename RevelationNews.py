@@ -1,10 +1,10 @@
 import json
-
 import requests
 import random
 
-# API.Bible credentials: ####
+# API.Bible credentials: f208fb25f01350215cb19b257fb1caf5
 # API.Bible King James (Authorized) Version (protestant) ID: de4e12af7f28f599-02
+
 
 
 def choose_rand_chap():
@@ -19,7 +19,7 @@ def call_api_bible_chap(chap_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': '####'
+        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
@@ -53,16 +53,17 @@ def call_api_bible_verse(chap_num, verse_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': '####'
+        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
                                       f'bibles/{bible_ver}/verses/{ref}?{params}',
                                       headers=headers)
 
-    print(api_bible_response.json())
+    api_bible_response_json = api_bible_response.json()["data"]
+    verse_str = api_bible_response_json["content"]
 
-    return verse_tot
+    return verse_str
 
 
 def words_list_creation():
@@ -77,8 +78,9 @@ def call_news_site(words):
 
 # if __name__ == "__main__":
 chap_num = choose_rand_chap()
-print(f'Chapter {chap_num}')
+print(f'REVELATION\nChapter {chap_num}')
 chap_length = call_api_bible_chap(chap_num)
 verse_num = choose_rand_verse(chap_length)
 print(f'Verse {verse_num}')
-# call_api_bible_verse(chap_num, verse_num)
+verse_str = call_api_bible_verse(chap_num, verse_num)
+print(verse_str)
