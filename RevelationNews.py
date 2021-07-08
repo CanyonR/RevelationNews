@@ -2,9 +2,8 @@ import re
 import requests
 import random
 
-# API.Bible credentials: f208fb25f01350215cb19b257fb1caf5
-# API.Bible King James (Authorized) Version (protestant) ID: de4e12af7f28f599-02
-
+# API.Bible key: #####
+# newsapi.org key: #####
 
 
 def choose_rand_chap():
@@ -53,7 +52,7 @@ def call_api_bible_verse(chap_num, verse_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
+        'api-key': '#####'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
@@ -62,6 +61,7 @@ def call_api_bible_verse(chap_num, verse_num):
 
     api_bible_response_json = api_bible_response.json()["data"]
     verse_str = api_bible_response_json["content"]
+    # print(api_bible_response_json)
 
     return verse_str
 
@@ -70,7 +70,7 @@ def words_list_creation(verse_str):
     """" Create a list of important words from the verse """
 
     dire_list = [
-        'and', 'or', 'nor', 'so', 'yet', 'he'
+        'and', 'or', 'nor', 'so', 'yet', 'he', 'also', 'let',
         'although', 'far', 'if', 'long', 'soon', 'though', 'because',
         'considering', 'either', 'however', 'order', 'that', 'neither',
         'so', 'then', 'unless', 'when', 'whenever', 'where',
@@ -92,7 +92,7 @@ def words_list_creation(verse_str):
         'night', 'ever', 'not', 'no', 'yes', 'should', 'would', 'her',
         'he', 'set', 'who', 'whom', 'see', 'said', 'am', 'will', 'after',
         'must', 'all', 'some', 'many', 'few', 'what', 'make', 'went',
-        'came', 'this', 'that'
+        'came', 'this', 'that', 'these', 'made'
     ]
 
     words_all = re.sub("[^\w]", " ", verse_str.lower()).split()
@@ -105,8 +105,37 @@ def words_list_creation(verse_str):
     return words_important
 
 
-def call_news_site(words):
+def choose_topic(words):
     """ Search for news articles related to the verse """
+    random.shuffle(words)
+    return words.pop()
+
+
+def call_news_site(topic):
+    """ Search for news articles related to the verse """
+
+    params = f'qInTitle={topic}' \
+             '&language=en' \
+             '&include-titles=true' \
+             '&sortBy=relevancy' \
+             '&pageSize=1' \
+             '&apiKey=#####'
+
+
+    news_api_response = requests.get(f"https://newsapi.org/v2/everything?{params}")
+
+    news_api_response_json = news_api_response.json()['articles'][0]
+    # print(news_api_response_json)
+    news_source = news_api_response_json['source']
+    news_title = news_api_response_json['title']
+    news_url = news_api_response_json['url']
+    news_description = news_api_response_json['description']
+
+    print(news_title)
+    print(news_source['name'])
+    print(news_description)
+    print(news_url)
+
 
 
 # if __name__ == "__main__":
@@ -118,4 +147,7 @@ print(f'Verse {verse_num}')
 verse_str = call_api_bible_verse(chap_num, verse_num)
 print(verse_str)
 words = words_list_creation(verse_str)
-print(words)
+# print(words)
+topic = choose_topic(words)
+print(topic.upper())
+call_news_site(topic)
