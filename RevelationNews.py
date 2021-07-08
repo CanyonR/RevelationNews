@@ -18,7 +18,7 @@ def call_api_bible_chap(chap_num):
 
     headers = {
         'accept': 'application/json',
-        'api-key': 'f208fb25f01350215cb19b257fb1caf5'
+        'api-key': '#####'
     }
 
     api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
