@@ -55,5 +55,6 @@
 
 
 7. To-Do List
+    o Write contingency for when 0 articles are found
     o Limit length of article description
     o Improve user experience
