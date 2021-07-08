@@ -4,8 +4,8 @@
    |----------------|
    | RevelationNews |
    |----------------|
-   |    v 0.0.0     |
-   |   2020-06-01   |
+   |    v 0.0.1     |
+   |   2021-07-07   |
 ------------------------
 ------------------------
 
@@ -21,9 +21,9 @@
 
 
 2. About the Program
-          The ultimate goal is for this program to display a random verse
-      from the book of Revelation and then display a link to a "related"
-      news article from the current week.
+          This program displays a random verse from the book of
+          Revelation and then display a link to a "related" news
+          article from the past few months.
 
 
 3. List of Files:
@@ -34,16 +34,17 @@
 4. Requirements:
     + Python 3 (developed in 3.7.4)
         Modules:
+        -re
         -requests
         -random
     + Internet connection
         API Dependencies:
-        -API.bible
-        -
+        -scripture.api.bible
+        -newsapi.org
 
 
 5. Instructions:
-    + TBD
+    + 
 
 
 6. About the Author
@@ -54,5 +55,5 @@
 
 
 7. To-Do List
-    o Call specific verse from Revelation
-    o Find news source to call for comparison
+    o Limit length of article description
+    o Improve user experience
