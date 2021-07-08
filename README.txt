@@ -4,10 +4,10 @@
    |----------------|
    | RevelationNews |
    |----------------|
-   |    v 0.1.0     |
+   |    v 0.0.0     |
    |   2020-06-01   |
------------------------
------------------------
+------------------------
+------------------------
 
 
 1. Table of Contents
@@ -37,7 +37,7 @@
         -requests
         -random
     + Internet connection
-        Websites:
+        API Dependencies:
         -API.bible
         -
 
