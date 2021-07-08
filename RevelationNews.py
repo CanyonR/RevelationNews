@@ -1,4 +1,4 @@
-import json
+import re
 import requests
 import random
 
@@ -66,10 +66,43 @@ def call_api_bible_verse(chap_num, verse_num):
     return verse_str
 
 
-def words_list_creation():
+def words_list_creation(verse_str):
     """" Create a list of important words from the verse """
-    words = []
-    return words
+
+    dire_list = [
+        'and', 'or', 'nor', 'so', 'yet', 'he'
+        'although', 'far', 'if', 'long', 'soon', 'though', 'because',
+        'considering', 'either', 'however', 'order', 'that', 'neither',
+        'so', 'then', 'unless', 'when', 'whenever', 'where',
+        'whereas', 'wherever', 'whether', 'while',
+        'about', 'above', 'across', 'against', 'among', 'around', 'at',
+        'behind', 'below', 'beside', 'between', 'by', 'down', 'during',
+        'from', 'inside', 'into', 'near', 'of', 'off', 'on', 'out',
+        'over', 'through', 'to', 'toward', 'under', 'up', 'with',
+        'aboard', 'along', 'amid', 'beneath', 'beyond', 'concerning',
+        'despite', 'except', 'following', 'like', 'minus', 'next',
+        'onto', 'opposite', 'outside', 'past', 'per', 'plus', 'regarding',
+        'round', 'save', 'till', 'underneath', 'unlike', 'upon', 'versus',
+        'via', 'within', 'without', 'as', 'but', 'since', 'than', 'until',
+        'alas', 'saying', 'in', 'the', 'a', 'an', 'they', 'them', 'their',
+        'where', 'wherein', 'had', 'has', 'have', 'for', 'is', 'was',
+        'were', 'i', 'me', 'my', 'you', 'your', 'our', 'ours', 'it',
+        'here', 'there', 'his', 'him', 'she', 'hers', 'unto', 'part',
+        'ye', 'which', 'come', 'things', 'are', 'shall', 'be', 'day',
+        'night', 'ever', 'not', 'no', 'yes', 'should', 'would', 'her',
+        'he', 'set', 'who', 'whom', 'see', 'said', 'am', 'will', 'after',
+        'must', 'all', 'some', 'many', 'few', 'what', 'make', 'went',
+        'came', 'this', 'that'
+    ]
+
+    words_all = re.sub("[^\w]", " ", verse_str.lower()).split()
+    words_important = []
+
+    for word in words_all:
+        if word not in dire_list:
+            words_important.append(word)
+
+    return words_important
 
 
 def call_news_site(words):
@@ -84,3 +117,5 @@ verse_num = choose_rand_verse(chap_length)
 print(f'Verse {verse_num}')
 verse_str = call_api_bible_verse(chap_num, verse_num)
 print(verse_str)
+words = words_list_creation(verse_str)
+print(words)
