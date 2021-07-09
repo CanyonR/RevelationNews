@@ -2,34 +2,20 @@ import re
 import requests
 import random
 
-# API.Bible key: #####
-# newsapi.org key: #####
-
 
 def choose_rand_chap():
     """ Pick a random chapter from Revelation """
     return random.randint(1, 21)
 
 
-def call_api_bible_chap(chap_num):
-    """ Grab the chapter from the api.bible website and count the verses """
-    bible_ver = 'de4e12af7f28f599-02'
-    ref = f'REV.{chap_num}'
-
-    headers = {
-        'accept': 'application/json',
-        'api-key': '#####'
+def find_chap_len(chap_num):
+    """ Determine the length of the chapter """
+    chapter_lengths = {
+        1: 20, 2: 29, 3: 22, 4: 11, 5: 14, 6: 17, 7: 17,
+        8: 13, 9: 21, 10: 11, 11: 19, 12: 17, 13: 18, 14: 20,
+        15: 8, 16: 21, 17: 18, 18: 24, 19: 21, 20: 15, 21: 27, 22: 21
     }
-
-    api_bible_response = requests.get(f'https://api.scripture.api.bible/v1/'
-                                      f'bibles/{bible_ver}/chapters/{ref}/verses',
-                                      headers=headers)
-    # print(api_bible_response)
-    api_bible_response_json = api_bible_response.json()["data"]
-    # print(api_bible_response_json)
-    chap_length = len(api_bible_response_json)
-
-    return chap_length
+    return(chapter_lengths[chap_num])
 
 
 def choose_rand_verse(chap_length):
@@ -59,19 +45,21 @@ def call_api_bible_verse(chap_num, verse_num):
                                       f'bibles/{bible_ver}/verses/{ref}?{params}',
                                       headers=headers)
 
+    # This could probably be its own function for parsing the verse from the response:
     api_bible_response_json = api_bible_response.json()["data"]
     verse_str = api_bible_response_json["content"]
-    # print(api_bible_response_json)
+
 
     return verse_str
 
 
 def clean_verse_up(verse_str):
+    """ Remove the spaces before and the line break after the verse """
+
     while verse_str[0] == " ":
         verse_str = verse_str[1:]
 
-    while verse_str[-1] == " ":
-        verse_str = verse_str[:-1]
+    verse_str = verse_str[:-1]
 
     return verse_str
 
@@ -84,7 +72,7 @@ def words_list_creation(verse_str):
         'although', 'far', 'if', 'long', 'soon', 'though', 'because',
         'considering', 'either', 'however', 'order', 'that', 'neither',
         'so', 'then', 'unless', 'when', 'whenever', 'where',
-        'whereas', 'wherever', 'whether', 'while',
+        'whereas', 'wherever', 'whether', 'while', 'did',
         'about', 'above', 'across', 'against', 'among', 'around', 'at',
         'behind', 'below', 'beside', 'between', 'by', 'down', 'during',
         'from', 'inside', 'into', 'near', 'of', 'off', 'on', 'out',
@@ -121,7 +109,7 @@ def choose_topic(words):
     return words.pop()
 
 
-def call_news_site(topic):
+def call_news_api(topic):
     """ Search for news articles related to the verse """
 
     params = f'qInTitle={topic}' \
@@ -133,6 +121,8 @@ def call_news_site(topic):
 
     news_api_response = requests.get(f"https://newsapi.org/v2/everything?{params}")
 
+
+    # This could probably be its own function for parsing the response:
     news_api_response_json = news_api_response.json()['articles'][0]
     # print(news_api_response_json)
     # news_source = news_api_response_json['source']
@@ -140,6 +130,7 @@ def call_news_site(topic):
     news_url = news_api_response_json['url']
     news_description = news_api_response_json['description']
 
+    # This could probably be its own function for printing the news info:
     print(news_title)
     # print(news_source['name'])
     print(news_description)
@@ -148,7 +139,7 @@ def call_news_site(topic):
 
 # if __name__ == "__main__":
 chap_num = choose_rand_chap()
-chap_length = call_api_bible_chap(chap_num)
+chap_length = find_chap_len(chap_num)
 verse_num = choose_rand_verse(chap_length)
 print(f'REVELATION\nChapter {chap_num}\nVerse {verse_num}')
 verse_str = call_api_bible_verse(chap_num, verse_num)
@@ -157,4 +148,4 @@ words = words_list_creation(verse_str)
 # print(words)
 topic = choose_topic(words)
 print(topic.upper())
-call_news_site(topic)
+call_news_api(topic)
