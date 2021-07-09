@@ -29,12 +29,7 @@ def call_api_bible_verse(chap_num, verse_num):
     ref = f'REV.{chap_num}.{verse_num}'
 
     params = 'content-type=text' \
-             '&include-notes=false' \
-             '&include-titles=true' \
-             '&include-chapter-numbers=false' \
-             '&include-verse-numbers=false' \
-             '&include-verse-spans=false' \
-             '&use-org-id=false'
+             '&include-verse-numbers=false'
 
     headers = {
         'accept': 'application/json',
