@@ -4,8 +4,8 @@
    |----------------|
    | RevelationNews |
    |----------------|
-   |    v 0.0.1     |
-   |   2021-07-07   |
+   |    v 0.0.2     |
+   |   2021-07-08   |
 ------------------------
 ------------------------
 
@@ -56,5 +56,4 @@
 
 7. To-Do List
     o Write contingency for when 0 articles are found
-    o Limit length of article description
-    o Improve user experience
+    o Improve user experience (website front-end?)
