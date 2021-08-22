@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Revelation News - Proof of God's Wrath from "The Media"</title>
+</head>
+<body>
+<h5> <a href="/">La Casa</a></h5>
+
+    <h1>
+        THE LORD HAS SPOKEN
+    </h1>
+        <h2>
+            <ul style="list-style: none;">
+                <li>Revelation {{chap_num}}:{{verse_num}}</li>
+                <li> {{cleaned_verse}}</li>
+                <li> <br> </li>
+                <li><b>{{topic}}</b></li>
+                <li> <br> </li>
+                <li>{{news_title}}</li>
+                <li><a href={{news_url}} target="_blank">{{news_url}}</a></li>
+                <li>{{news_description}}</li>
+        </ul>
+        </h2>
+            <h3>
+                For an example of a topic that is filtered out, <a href="badtopic" target="_blank">click here</a>.
+            </h3>
+</body>
+</html>

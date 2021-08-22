@@ -4,8 +4,8 @@
    |----------------|
    | RevelationNews |
    |----------------|
-   |    v 0.0.2     |
-   |   2021-07-08   |
+   |    v 0.1.0     |
+   |   2021-08-22   |
 ------------------------
 ------------------------
 
@@ -21,22 +21,33 @@
 
 
 2. About the Program
-          This program displays a random verse from the book of
+          This webpage displays a random verse from the book of
           Revelation and then display a link to a "related" news
           article from the past few months.
 
+          It uses Python, Flask, and AWS Elastic Beanstalk
+
 
 3. List of Files:
-    + README.txt
+    + templates/
+        + badtopic.html
+        + blog.html
+        + index.html
+        + revnews.html
+    + application.py
+    + README.txt 
+    + requirements.txt
     + revelationnews.py
 
 
 4. Requirements:
     + Python 3 (developed in 3.7.4)
         Modules:
+        -flask
         -re
         -requests
         -random
+
     + Internet connection
         API Dependencies:
         -scripture.api.bible
@@ -44,8 +55,10 @@
 
 
 5. Instructions:
-    + 
-
+    + Create 'keychain.py' and write python functions that return your api key for 'bible' and 'news'
+    + Create an AWS Elastic Beanstalk environment for Python w/ Flask
+    + Compress the entire RevNews directory 
+    + Upload the .zip to the env
 
 6. About the Author
     Canyon Read
@@ -55,5 +68,8 @@
 
 
 7. To-Do List
-    o Write contingency for when 0 articles are found
-    o Improve user experience (website front-end?)
+    o Better management of the dire list and chap-verse dictionary
+    o Run program as AWS Lambda instead of using an EC2 (?)
+    o Make better interface (using .js)
+    o Add save button and database to store 'favorite results' (?)
+    o Fix favicon not loading
