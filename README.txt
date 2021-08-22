@@ -21,7 +21,7 @@
 
 
 2. About the Program
-          This webpage displays a random verse from the book of
+          This website displays a random verse from the book of
           Revelation and then gives a link to a "related" news
           article from the past few months.
 
