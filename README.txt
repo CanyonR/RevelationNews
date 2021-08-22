@@ -22,7 +22,7 @@
 
 2. About the Program
           This webpage displays a random verse from the book of
-          Revelation and then display a link to a "related" news
+          Revelation and then gives a link to a "related" news
           article from the past few months.
 
           It uses Python, Flask, and AWS Elastic Beanstalk
@@ -56,9 +56,11 @@
 
 5. Instructions:
     + Create 'keychain.py' and write python functions that return your api key for 'bible' and 'news'
-    + Create an AWS Elastic Beanstalk environment for Python w/ Flask
-    + Compress the entire RevNews directory 
-    + Upload the .zip to the env
+    + Run application.py for localhosting
+    + Alternatively:
+        + Create an AWS Elastic Beanstalk environment for Python w/ Flask
+        + Compress the entire RevNews directory 
+        + Upload the .zip to the env
 
 6. About the Author
     Canyon Read
