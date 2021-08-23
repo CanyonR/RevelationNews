@@ -25,8 +25,6 @@
           Revelation and then gives a link to a "related" news
           article from the past few months.
 
-          It uses Python, Flask, and AWS Elastic Beanstalk
-
 
 3. List of Files:
     + templates/
@@ -55,12 +53,15 @@
 
 
 5. Instructions:
-    + Create 'keychain.py' and write python functions that return your api key for 'bible' and 'news'
-    + Run application.py for localhosting
+    1. Create 'keychain.py' and write python functions that return your api key for 'bible' and 'news'
+
+    2. Run application.py to host the website locally
+    3. Navigate in a browser to localhost:port/revnews
+
     + Alternatively:
-        + Create an AWS Elastic Beanstalk environment for Python w/ Flask
-        + Compress the entire RevNews directory 
-        + Upload the .zip to the env
+        2. Create an AWS Elastic Beanstalk environment for Python w/ Flask
+        3. Compress the entire RevNews directory 
+        4. Upload the .zip to the env
 
 6. About the Author
     Canyon Read
@@ -70,8 +71,8 @@
 
 
 7. To-Do List
-    o Better management of the dire list and chap-verse dictionary
-    o Run program as AWS Lambda instead of using an EC2 (?)
+    o Better management of the dire_list and chapter_lengths variables
     o Make better interface (using .js)
     o Add save button and database to store 'favorite results' (?)
+    o Run program as AWS Lambda instead of using an EC2 (?)
     o Fix favicon not loading
